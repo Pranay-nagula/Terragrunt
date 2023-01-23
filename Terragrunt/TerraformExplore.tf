@@ -2,7 +2,7 @@ resource "azurerm_monitor_metric_alert" "PercentageCPU" {
   count = length(var.VMs)
   name                = "${var.VMs[count.index]} CPU hits 50"
   resource_group_name = "Terraform"
-  scopes              = ["/subscriptions/28171e61-7be1-40be-9fb1-92a228469442/resourceGroups/Terraform/providers/Microsoft.Compute/virtualMachines/${var.VMs[count.index]}"]
+  scopes              = ["/subscriptions/{provide subscription ID}/resourceGroups/Terraform/providers/Microsoft.Compute/virtualMachines/${var.VMs[count.index]}"]
   description         = "${var.VMs[count.index]} CPU triggered at 50"
   target_resource_type = "Microsoft.Compute/virtualMachines"
   criteria { 
@@ -31,7 +31,7 @@ resource "azurerm_monitor_action_group" "ag" {
   short_name          = "ActionGroup"
   email_receiver {
     name          = "TestingTerra"
-    email_address = "pranay.nagula@outlook.com"
+    email_address = "XXYYZZ@outlook.com"
   }
 }
 
@@ -39,7 +39,7 @@ resource "azurerm_monitor_metric_alert" "DiskReadBytes" {
   count = length(var.VMs)
   name                = "${var.VMs[count.index]} Disk Hit maximum"
   resource_group_name = "Terraform"
-  scopes              = ["/subscriptions/28171e61-7be1-40be-9fb1-92a228469442/resourceGroups/Terraform/providers/Microsoft.Compute/virtualMachines/${var.VMs[count.index]}"]
+  scopes              = ["/subscriptions/{provide subscription ID}/resourceGroups/Terraform/providers/Microsoft.Compute/virtualMachines/${var.VMs[count.index]}"]
   description         = "${var.VMs[count.index]} Disk Hits threshold value"
   target_resource_type = "Microsoft.Compute/virtualMachines"
   criteria { 
